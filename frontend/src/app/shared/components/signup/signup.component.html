@@ -1,0 +1,56 @@
+<div class="signup-container">
+    <h2>Signup</h2>
+  
+    <form (ngSubmit)="onSubmit()" [formGroup]="signupForm">
+      
+      <!-- Full Name -->
+      <label>Full Name:</label>
+      <input type="text" formControlName="fullName" required />
+      <div *ngIf="signupForm.get('fullName')?.invalid && signupForm.get('fullName')?.touched">
+        Full Name is required
+      </div>
+  
+      <!-- Email -->
+      <label>Email:</label>
+      <input type="email" formControlName="email" required />
+      <div *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+        Enter a valid email
+      </div>
+  
+      <!-- Phone Number -->
+      <label>Phone:</label>
+      <input type="tel" formControlName="phone" required pattern="[0-9]{10}" />
+      <div *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched">
+        Enter a valid 10-digit phone number
+      </div>
+  
+      <!-- Password -->
+      <label>Password:</label>
+      <input type="password" formControlName="password" required />
+      <div *ngIf="signupForm.get('password')?.invalid && signupForm.get('password')?.touched">
+        Password must be at least 6 characters
+      </div>
+  
+      <!-- Confirm Password -->
+      <label>Confirm Password:</label>
+      <input type="password" formControlName="confirmPassword" required />
+      <div *ngIf="signupForm.hasError('passwordMismatch') && signupForm.get('confirmPassword')?.touched">
+        Passwords do not match
+      </div>
+  
+      <!-- Profile Picture Upload -->
+      <label>Profile Picture:</label>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+  
+      <!-- Terms & Conditions -->
+      <label>
+        <input type="checkbox" formControlName="terms" />
+        I agree to the Terms & Conditions
+      </label>
+      <div *ngIf="signupForm.get('terms')?.invalid && signupForm.get('terms')?.touched">
+        You must accept the terms
+      </div>
+  
+      <button type="submit" [disabled]="signupForm.invalid">Signup</button>
+    </form>
+  </div>

@@ -1,0 +1,35 @@
+.signup-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f9f9f9;
+  
+    h2 {
+      text-align: center;
+    }
+  
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+    }
+  
+    .error {
+      color: red;
+      font-size: 12px;
+    }
+  
+    button {
+      background: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+  
+      &:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+      }
+    }
+  }
