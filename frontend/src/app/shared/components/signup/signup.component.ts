@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   profilePicture: File | null = null;
 
@@ -28,6 +28,8 @@ export class SignupComponent {
       { validators: this.passwordMatchValidator }
     );
   }
+
+  ngOnInit(): void {}
 
   passwordMatchValidator(form: FormGroup) {
     return form.get('password')?.value === form.get('confirmPassword')?.value
