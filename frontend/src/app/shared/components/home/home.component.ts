@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { RestaurantsService } from '../../../core/services/restaurants.service';
+import { Component, OnInit } from '@angular/core';;
 import { Restaurant } from '../../models/restaurant';
+import { RestaurantsService } from '../../../core/services/restaurants/restaurants.service';
 
 @Component({
   selector: 'app-home',
