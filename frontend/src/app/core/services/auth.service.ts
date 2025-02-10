@@ -6,13 +6,14 @@ import { catchError, Observable, tap, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api/auth';
+  private loginUrl = 'http://localhost:3000/api/auth';
+  private signupUrl = 'http://localhost:3000/api/users';
 
   constructor(private http : HttpClient) { }
 
   // Login function
   login(credentials : {email : string, password : string}) : Observable<{token : string}> {
-    return this.http.post<{token : string}>(`${this.apiUrl}`, credentials).pipe(
+    return this.http.post<{token : string}>(this.loginUrl, credentials).pipe(
       tap(response => {
         console.log('Login Successful:', response);
         localStorage.setItem('token', response.token); // Store the token in local storage
@@ -34,6 +35,15 @@ export class AuthService {
   // Get stored token
   getToken(): string | null {
     return localStorage.getItem('token');
+  }
+
+  signup(userData: FormData): Observable<any> {
+    return this.http.post<any>(this.signupUrl, userData).pipe(
+      tap(response => {
+        console.log('Signup Successful:', response);
+      }),
+      catchError(this.errorHandler)
+    );
   }
 
   //error handler
